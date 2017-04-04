@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IGN_Siteblocks>
+            <version>1.0.0</version>
+        </IGN_Siteblocks>
+    </modules>
+    <global>
+        <models>
+            <siteblocks>
+                <class>IGN_Siteblocks_Model</class>
+                <resourceModel>siteblocks_resource</resourceModel>
+            </siteblocks>
+            <siteblocks_resource>
+                <class>IGN_Siteblocks_Resource</class>
+                <entities>
+                    <block>
+                        <table>ign_siteblock</table> <!--название таблицы  в базе-->
+                    </block>
+                </entities>
+            </siteblocks_resource>
+        </models>
+        <resources>
+            <siteblocks_setup>
+                <setup>
+                    <module>IGN_Siteblocks</module>
+                </setup>
+            </siteblocks_setup>
+        </resources>
+    </global>
+    <frontend>
+        <routers>
+            <siteblocks>
+                <use>standard</use>
+                <args>
+                    <module>IGN_Siteblocks</module>
+                    <frontName>siteblocks</frontName>
+                </args>
+            </siteblocks>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <siteblocks before="Mage_Adminhtml">IGN_Siteblocks_Adminhtml</siteblocks>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <default>
+
+    </default>
+</config>
