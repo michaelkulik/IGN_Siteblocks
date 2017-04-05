@@ -27,6 +27,11 @@
                 </setup>
             </siteblocks_setup>
         </resources>
+        <helpers>
+            <siteblocks>
+                <class>IGN_Siteblocks_Helper</class>
+            </siteblocks>
+        </helpers>
     </global>
     <frontend>
         <routers>
@@ -38,6 +43,15 @@
                 </args>
             </siteblocks>
         </routers>
+        <translate>
+            <modules>
+                <IGN_Siteblocks>
+                    <files>
+                        <default>IGN_Siteblocks.csv</default>
+                    </files>
+                </IGN_Siteblocks>
+            </modules>
+        </translate>
     </frontend>
     <admin>
         <routers>
