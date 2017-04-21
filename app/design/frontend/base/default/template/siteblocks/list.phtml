@@ -1,0 +1,9 @@
+<?php foreach ($this->getBlocks() as $block): ?>
+    <div class="siteblock">
+        <div class="block-title"><?php echo $block->getTitle(); ?></div>
+        <div class="block-content"><?php echo $block->getContent(); ?></div>
+    </div>
+<?php endforeach;?>
+
+<?php //echo $this->getLayout()->createBlock('siteblocks/list')->setTemplate('siteblocks/ouranothertemplate.phtml')->toHtml(); ?>
+

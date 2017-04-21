@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <siteblocks_index_index><!--используется handle формата frontendroute_controller_action-->
+        <reference name="content">
+            <block type="siteblocks/list" as="siteblocks" name="siteblocks.list" template="siteblocks/list.phtml"/>
+        </reference>
+    </siteblocks_index_index>
+
+    <catalog_category_default>
+        <reference name="left">
+            <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_default>
+        <reference name="right">
+            <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_default>
+        <reference name="content">
+            <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
+        </reference>
+    </catalog_category_default>
+    <!--вывод блоков на странице товара-->
+    <catalog_product_view>
+        <reference name="product.info.extrahint">
+            <block name="siteblocks.list" before="" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
+        </reference>
+    </catalog_product_view>
+</layout>

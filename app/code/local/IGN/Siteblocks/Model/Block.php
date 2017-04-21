@@ -6,6 +6,5 @@ class IGN_Siteblocks_Model_Block extends Mage_Core_Model_Abstract
     {
         parent::_construct();
         $this->_init('siteblocks/block');
-        echo Mage::helper('siteblocks')->__('test');
     }
 }

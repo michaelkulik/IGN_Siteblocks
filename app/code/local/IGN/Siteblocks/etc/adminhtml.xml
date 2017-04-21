@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <siteblocks translate="title" module="siteblocks">
+                                        <title>Siteblocks</title>
+                                    </siteblocks>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <!--добавляем пункт нашего модуля в секцию "acl", чтобы администратор мог настроить права доступа, то есть-->
+                    <!--для какого пользователя будет доступен пункт нашего модуля, а для кого нет-->
+                    <cms>
+                        <children>
+                            <siteblocks translate="title" module="siteblocks">
+                                <title>Siteblocks</title>
+                            </siteblocks>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <!--добавление нашего пункта меню в пункт "CMS"-->
+    <menu>
+        <cms>
+            <children>
+                <siteblocks translate="title" module="siteblocks">
+                    <title>Siteblocks</title>
+                    <action>adminhtml/siteblocks</action>
+                    <sort_order>20</sort_order>
+                </siteblocks>
+            </children>
+        </cms>
+    </menu>
+</config>

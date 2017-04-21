@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <ign translate="label" module="siteblocks"> <!--здесь тег может быть произвольный, в данном случае это namespace нашего модуля-->
+            <label>IGN</label> <!--translate="label" - что переводить, module="siteblocks" - название хелпера, который будет переводить-->
+            <sort_order>5</sort_order> <!--положение табы IGN в левой колонке в System->Configuration, чем ниже число, тем выше позиция-->
+        </ign>
+    </tabs>
+    <sections>
+        <siteblocks module="siteblocks" translate="label">
+            <label>Siteblocks</label>
+            <tab>ign</tab> <!--значение соответствует тегу ign внутри тега tabs выше-->
+            <frontend>text</frontend>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default> <!--эта и ниже 2 опции определяют показывать/не показывать в данном скопе текущую секцию (Siteblocks)-->
+            <show_in_Website>1</show_in_Website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <global module="siteblocks" translate="label">
+                    <label>Settings</label>
+                    <expanded>1</expanded> <!--раскрыт блок по дефолту или нет-->
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default> <!--аналогичные опции для scopes, как и выше-->
+                    <show_in_Website>1</show_in_Website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment" module="siteblocks"> <!--название произвольное-->
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type><!--либо text, textarea, multiselect и т.д.-->
+                            <source_model>siteblocks/source_myoptions</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_Website>1</show_in_Website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Is module enabled</comment>
+                        </enabled>
+                        <blocks_count>
+                            <label>Blocks on page</label>
+                            <frontend_type>text</frontend_type><!--так как определён input типа text, source_model ему не нужен-->
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_Website>1</show_in_Website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends><!--поле blocks_count (Blocks on page) будет выводиться, только если поле Enabled будет активно (равно 1). Это разгружает работу администратора-->
+                        </blocks_count>
+                        <additional>
+                            <label>Some additional text</label>
+                            <frontend_type>textarea</frontend_type><!--так как определён input типа text, source_model ему не нужен-->
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_Website>1</show_in_Website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends><!--поле blocks_count (Blocks on page) будет выводиться, только если поле Enabled будет активно (равно 1). Это разгружает работу администратора-->
+                        </additional>
+                    </fields>
+                </global>
+            </groups>
+        </siteblocks>
+    </sections>
+</config>

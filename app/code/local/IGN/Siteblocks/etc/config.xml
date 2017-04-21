@@ -6,13 +6,18 @@
         </IGN_Siteblocks>
     </modules>
     <global>
+        <blocks>
+            <siteblocks>
+                <class>IGN_Siteblocks_Block</class>
+            </siteblocks>
+        </blocks>
         <models>
             <siteblocks>
                 <class>IGN_Siteblocks_Model</class>
                 <resourceModel>siteblocks_resource</resourceModel>
             </siteblocks>
             <siteblocks_resource>
-                <class>IGN_Siteblocks_Resource</class>
+                <class>IGN_Siteblocks_Model_Resource</class>
                 <entities>
                     <block>
                         <table>ign_siteblock</table> <!--название таблицы  в базе-->
@@ -34,6 +39,13 @@
         </helpers>
     </global>
     <frontend>
+        <layout>
+            <updates>
+                <siteblocks module="siteblocks">
+                    <file>siteblocks.xml</file>
+                </siteblocks>
+            </updates>
+        </layout>
         <routers>
             <siteblocks>
                 <use>standard</use>
@@ -52,6 +64,20 @@
                 </IGN_Siteblocks>
             </modules>
         </translate>
+        <events>
+            <checkout_cart_product_add_after> <!--скопированное название из \code\core\Mage\Checkout\Model\Cart.php метода dispatchEvent()-->
+                <observers><!--в модуле может быть несколько слушателей, здесь их перечисляем, указывая произвольное название-->
+                    <siteblocks>
+                        <!--далее идут параметры:-->
+                        <class>siteblocks/observer</class><!--рекомендуется давать название классу _Observer, то есть здесь его же и пишем-->
+                        <method>checkout_cart_product_add_after</method><!--данный метод будет вызываться в текущем обсервере при текущем событии-->
+                        <!--Сергей рекомендует давать название методу выше такое же, как название самого события-->
+                        <type>model</type><!--параметр необязателен-->
+                        <!--<args></args> - необязательный тег (или обязателен в другой ситуации)-->
+                    </siteblocks>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
     </frontend>
     <admin>
         <routers>
@@ -65,6 +91,25 @@
         </routers>
     </admin>
     <default>
-
+        <siteblocks>
+            <global>
+                <enabled>1</enabled>
+                <blocks_count>10</blocks_count>
+            </global>
+        </siteblocks>
     </default>
+    <crontab>
+        <jobs>
+            <!--перечисляем наши задачи, задаём произвольные имена-->
+            <siteblocks_clear_cache><!--периодичное обновление своего кэша нашего модуля-->
+                <schedule>
+                    <cron_expr>* * * * *</cron_expr>
+                    <!--указываем что запускать-->
+                    <run>
+                        <model>siteblocks/cron::siteblocks_clear_cache</model><!--чтобы не было путаницы указываем название метода таки же, как название задачи-->
+                    </run>
+                </schedule>
+            </siteblocks_clear_cache>
+        </jobs>
+    </crontab>
 </config>
