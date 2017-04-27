@@ -16,7 +16,7 @@
             <show_in_Website>1</show_in_Website>
             <show_in_store>1</show_in_store>
             <groups>
-                <global module="siteblocks" translate="label">
+                <settings module="siteblocks" translate="label">
                     <label>Settings</label>
                     <expanded>1</expanded> <!--раскрыт блок по дефолту или нет-->
                     <sort_order>1</sort_order>
@@ -27,7 +27,7 @@
                         <enabled translate="label comment" module="siteblocks"> <!--название произвольное-->
                             <label>Enabled</label>
                             <frontend_type>select</frontend_type><!--либо text, textarea, multiselect и т.д.-->
-                            <source_model>siteblocks/source_myoptions</source_model>
+                            <source_model>siteblocks/source_status</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_Website>1</show_in_Website>
@@ -36,24 +36,33 @@
                         </enabled>
                         <blocks_count>
                             <label>Blocks on page</label>
-                            <frontend_type>text</frontend_type><!--так как определён input типа text, source_model ему не нужен-->
+                            <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_Website>1</show_in_Website>
                             <show_in_store>1</show_in_store>
-                            <depends><enabled>1</enabled></depends><!--поле blocks_count (Blocks on page) будет выводиться, только если поле Enabled будет активно (равно 1). Это разгружает работу администратора-->
+                            <depends><enabled>1</enabled></depends>
                         </blocks_count>
-                        <additional>
-                            <label>Some additional text</label>
-                            <frontend_type>textarea</frontend_type><!--так как определён input типа text, source_model ему не нужен-->
+                        <myimage>
+                            <label>Image</label>
+                            <frontend_type>myimage</frontend_type>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_Website>1</show_in_Website>
                             <show_in_store>1</show_in_store>
-                            <depends><enabled>1</enabled></depends><!--поле blocks_count (Blocks on page) будет выводиться, только если поле Enabled будет активно (равно 1). Это разгружает работу администратора-->
-                        </additional>
+                            <depends><enabled>1</enabled></depends>
+                        </myimage>
+                        <raw_text>
+                            <label>Raw Text</label>
+                            <frontend_type>myeditor</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_Website>1</show_in_Website>
+                            <show_in_store>1</show_in_store>
+                            <!--<depends><enabled>1</enabled></depends>-->
+                        </raw_text>
                     </fields>
-                </global>
+                </settings>
             </groups>
         </siteblocks>
     </sections>

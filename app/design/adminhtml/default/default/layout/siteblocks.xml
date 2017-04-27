@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--Подгрузка необходимого JavaScript и CSS кода для указанных роутов-->
+<layout version="1.0.0">
+    <!--для формы ввода/редактирования сайтблока-->
+    <adminhtml_siteblocks_edit>
+        <update handle="editor"/>
+    </adminhtml_siteblocks_edit>
+    <!--для поля ввода в настройках нашего модуля-->
+    <adminhtml_system_config_edit>
+        <update handle="editor"/>
+    </adminhtml_system_config_edit>
+</layout>

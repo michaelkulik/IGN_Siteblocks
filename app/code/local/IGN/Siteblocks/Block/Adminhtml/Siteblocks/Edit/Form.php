@@ -21,10 +21,8 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
             array(
                 'id' => 'edit_form',
                 'method' => 'post',
-                // было:
-//                'action' => $this->getData('action'),
-                // делаем под себя:
                 'action'   => $this->getUrl('*/*/save', ['block_id' => $this->getRequest()->getParam('block_id')]),
+                'enctype'  => 'multipart/form-data', // иначе файлы не будут грузиться (в нашем случае картинки)
             )
         );
 
@@ -45,16 +43,22 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
             'required'  => true,
         ));
 
-        $fieldset->addField('content', 'textarea', array(
+        $fieldset->addField('content', 'editor', array(
             'name'      => 'content',
             'label'     => Mage::helper('siteblocks')->__('Content'),
             'title'     => Mage::helper('siteblocks')->__('Content'),
-//            'style'     => 'height:36em',
+            'style'     => 'height:16em',
             'required'  => true,
-//            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
+            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
         ));
+        // добавим свой тип
+        /**
+         * метод назначает для нашего типа myimage указанный класс рендерера
+         */
+//        $fieldset->addType('myimage', 'IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Renderer_Myimage');
 
-        $fieldset->addField('image', 'image', [
+        // назначим свой тип 'myimage' для поля картинки в форме редактирования/создания
+        $fieldset->addField('image', 'myimage', [
             'name'      => 'image',
             'label'     => Mage::helper('siteblocks')->__('Image'),
             'title'     => Mage::helper('siteblocks')->__('Image'),
@@ -75,4 +79,11 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
         return parent::_prepareForm();
     }
 
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
+    }
 }

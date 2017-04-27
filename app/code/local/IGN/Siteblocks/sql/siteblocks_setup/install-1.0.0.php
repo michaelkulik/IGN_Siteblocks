@@ -21,7 +21,9 @@ $table = $installer->getConnection()
     ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(
         'nullable' => false
     ));
-$installer->getConnection()->createTable($table);
+if (!$installer->getConnection()->isTableExists($this->getTable('siteblocks/block'))) {
+    $installer->getConnection()->createTable($table);
+}
 //$installer->run("
 //CREATE TABLE IF NOT EXISTS `{$this->getTable('siteblocks/block')}` (
 //  `block_id` int(11) NOT NULL AUTO_INCREMENT,

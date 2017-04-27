@@ -1,6 +1,11 @@
 <?php foreach ($this->getBlocks() as $block): ?>
     <div class="siteblock">
         <div class="block-title"><?php echo $block->getTitle(); ?></div>
+        <div class="block-image">
+            <?php if ($block->getImage()): ?>
+                <img src="<?php echo $block->getImageSrc() ?>" height="100" width="auto" alt="<?php echo $block->getTitle() ?>" title="<?php echo $block->getTitle() ?>">
+            <?php endif; ?>
+        </div>
         <div class="block-content"><?php echo $block->getContent(); ?></div>
     </div>
 <?php endforeach;?>

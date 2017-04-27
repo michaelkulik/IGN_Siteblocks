@@ -27,11 +27,39 @@ class IGN_Siteblocks_Adminhtml_SiteblocksController extends Mage_Adminhtml_Contr
         $this->renderLayout();
     }
 
+    protected function _uploadFile($fieldName, $model)
+    {
+        if (!isset($_FILES[$fieldName])) {
+            return false;
+        }
+        $file = $_FILES[$fieldName];
+
+        if (isset($file['name']) && (file_exists($file['tmp_name']))) {
+            if ($model->getId()) {
+                unlink(Mage::getBaseDir('media') . DS . $model->getData($fieldName));
+            }
+            try {
+                $path = Mage::getBaseDir('media') . DS . 'siteblocks' . DS;
+                $uploader = new Varien_File_Uploader($file);
+                $uploader->setAllowedExtensions(['jpg', 'png', 'gif', 'jpeg']);
+                $uploader->setAllowRenameFiles(true);
+                $uploader->setFilesDispersion(false);
+
+                $uploader->save($path, $file['name']);
+                $model->setData($fieldName, $uploader->getUploadedFileName());
+                return true;
+            } catch (Exception $e) {
+                return false;
+            }
+        }
+    }
+
     public function saveAction()
     {
         try {
             $id = $this->getRequest()->getParam('block_id'); // на случай редактирования уже существующей записи
             $block = Mage::getModel('siteblocks/block')->load($id);
+            $this->_uploadFile('image', $block);
             $block
                 ->setTitle($this->getRequest()->getParam('title'))
                 ->setContent($this->getRequest()->getParam('content'))

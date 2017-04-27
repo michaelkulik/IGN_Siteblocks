@@ -11,11 +11,13 @@
             <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
         </reference>
     </catalog_category_default>
+
     <catalog_category_default>
         <reference name="right">
             <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>
         </reference>
     </catalog_category_default>
+
     <catalog_category_default>
         <reference name="content">
             <block name="sitblocks.list" as="siteblocks" type="siteblocks/list" template="siteblocks/list.phtml"/>

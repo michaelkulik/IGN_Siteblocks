@@ -19,6 +19,9 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Grid extends Mage_Adminhtml_Bloc
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return $this
+     */
     protected function _prepareColumns()
     {
         $this->addColumn('title', array(
@@ -30,7 +33,10 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Grid extends Mage_Adminhtml_Bloc
         $this->addColumn('image', [
             'header'    => Mage::helper('siteblocks')->__('Image'),
             'align'     => 'left',
-            'index'     => ''
+            'index'     => 'image',
+            'renderer'  => 'IGN_Siteblocks_Block_Adminhtml_Siteblocks_Grid_Renderer_Image',
+            'filter'    => false, // отключаем фильтр
+            'sortable'  => false, // отключаем сортировку
         ]);
 
         $this->addColumn('block_status', array(
