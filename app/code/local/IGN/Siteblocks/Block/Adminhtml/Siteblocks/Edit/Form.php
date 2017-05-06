@@ -27,51 +27,6 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
         );
 
         $form->setHtmlIdPrefix('block_');
-
-        $fieldset = $form->addFieldset('base_fieldset', array('legend'=>Mage::helper('siteblocks')->__('General Information'), 'class' => 'fieldset-wide'));
-
-        if ($model->getBlockId()) {
-            $fieldset->addField('block_id', 'hidden', array(
-                'name' => 'block_id',
-            ));
-        }
-
-        $fieldset->addField('title', 'text', array( // 'text' означает <input type="text"/>
-            'name'      => 'title',
-            'label'     => Mage::helper('siteblocks')->__('Block Title'),
-            'title'     => Mage::helper('siteblocks')->__('Block Title'),
-            'required'  => true,
-        ));
-
-        $fieldset->addField('content', 'editor', array(
-            'name'      => 'content',
-            'label'     => Mage::helper('siteblocks')->__('Content'),
-            'title'     => Mage::helper('siteblocks')->__('Content'),
-            'style'     => 'height:16em',
-            'required'  => true,
-            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
-        ));
-        // добавим свой тип
-        /**
-         * метод назначает для нашего типа myimage указанный класс рендерера
-         */
-//        $fieldset->addType('myimage', 'IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Renderer_Myimage');
-
-        // назначим свой тип 'myimage' для поля картинки в форме редактирования/создания
-        $fieldset->addField('image', 'myimage', [
-            'name'      => 'image',
-            'label'     => Mage::helper('siteblocks')->__('Image'),
-            'title'     => Mage::helper('siteblocks')->__('Image'),
-        ]);
-
-        $fieldset->addField('block_status', 'select', array(
-            'label'     => Mage::helper('siteblocks')->__('Status'),
-            'title'     => Mage::helper('siteblocks')->__('Status'),
-            'name'      => 'block_status',
-            'required'  => true,
-            'options'   => Mage::getModel('siteblocks/source_status')->toArray(),
-        ));
-
         $form->setValues($model->getData());
         $form->setUseContainer(true);
         $this->setForm($form);
